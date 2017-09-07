@@ -17,9 +17,21 @@ namespace DiagnostisktProv.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Product>()
+             .HasKey(di => di.ProductID);
+
+            builder.Entity<ProductCategory>()
+            .HasKey(di => di.CategoryID);
+
+            builder.Entity<Product>()
+            .HasOne(d => d.Category)
+            .WithMany(d => d.Products)
+            .HasForeignKey(d => d.CategoryID);
+
             base.OnModelCreating(builder);
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
     }
 }

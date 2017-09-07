@@ -13,5 +13,8 @@ namespace DiagnostisktProv.Models
         public string Name { get; set; }
         [Range(5,1000)]
         public Decimal Price { get; set; }
+        public Guid CategoryID { get; set; }
+        public ProductCategory Category { get; set; }
+
     }
 }
