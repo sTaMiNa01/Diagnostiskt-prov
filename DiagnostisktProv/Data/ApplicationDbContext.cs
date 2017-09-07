@@ -19,5 +19,7 @@ namespace DiagnostisktProv.Data
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<Product> Products { get; set; }
     }
 }
