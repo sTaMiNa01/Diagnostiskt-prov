@@ -27,7 +27,7 @@ namespace DiagnostisktProv.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            string message = "With great powers comes great responsibilitie";
+            string message = "With great powers comes great responsibilities";
             _logg.LogWarning(message);
             return View(await _context.Products.ToListAsync());
         }
