@@ -39,8 +39,10 @@ namespace DiagnostisktProv
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<UserManager<ApplicationUser>>();
+            services.AddTransient<ProductCategoryService>();
 
             services.AddMvc();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

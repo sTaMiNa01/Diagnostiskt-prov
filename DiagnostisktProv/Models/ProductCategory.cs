@@ -7,7 +7,7 @@ namespace DiagnostisktProv.Models
 {
     public class ProductCategory
     {
-        public Guid CategoryID { get; set; }
+        public int CategoryID { get; set; }
         public string Name { get; set; }
         public List<Product> Products { get; set; }
     }

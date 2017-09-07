@@ -7,21 +7,28 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DiagnostisktProv.Data;
 using DiagnostisktProv.Models;
+using Microsoft.Extensions.Logging;
+using DiagnostisktProv.Services;
 
 namespace DiagnostisktProv.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<Product> _logg;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(ApplicationDbContext context, ILogger<Product> logg)
         {
             _context = context;
+            _logg = logg;
+
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
+            string message = "With great powers comes great responsibilitie";
+            _logg.LogWarning(message);
             return View(await _context.Products.ToListAsync());
         }
 
@@ -54,7 +61,7 @@ namespace DiagnostisktProv.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductID,Name,Price")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductID,Name,Price,CategoryID")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +94,7 @@ namespace DiagnostisktProv.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("ProductID,Name,Price")] Product product)
+        public async Task<IActionResult> Edit(Guid id, [Bind("ProductID,Name,Price,CategoryID")] Product product)
         {
             if (id != product.ProductID)
             {
